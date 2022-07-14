@@ -45,8 +45,6 @@ app.get("/", (req, res) => {
 app.get('/posts/:id', (req, res)=> { 
 const id = req.params.id;
 const post = postBank.find(id);
-
-
 const html = `<!DOCTYPE html>
   <html>
   <head>
@@ -69,14 +67,20 @@ const html = `<!DOCTYPE html>
 </html>`;
 
 
+if(!post.id) {   
+  throw new Error('Not Found')
+} else {
+
+
 
 
 res.send(html)
+}})
 
-
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).send('Oops, Page Not Found')
 })
-
-
 
 app.listen(PORT, () => {
   console.log(`App listening in port ${PORT}`);
