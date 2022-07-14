@@ -25,7 +25,8 @@ app.get("/", (req, res) => {
           (post) => `
         <div class='news-item'>
           <p>
-            <span class="news-position">${post.id}. ▲</span>${post.title}
+            <span class="news-position"> <a href="/posts/${post.id}"> ▲${post.title}</a>
+           
             <small>(by ${post.name})</small>
           </p>
           <small class="news-info">
@@ -66,6 +67,7 @@ const html = `<!DOCTYPE html>
     </div>
   </body>
 </html>`;
+
 
 
 
